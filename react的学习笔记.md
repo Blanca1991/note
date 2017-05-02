@@ -22,5 +22,5 @@
 				
 	</script>
 	
-运行结果是
-![百度 ]()
+使用在线编辑运行结果如图
+<img src="/Users/wuxiaobo/workspace/note/image/demo1.png" width="100%" />

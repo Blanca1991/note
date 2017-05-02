@@ -18,8 +18,7 @@
 			<WebSite />,
 			docnment.getElementById("example")
 		
-		)
-				
+		)				
 	</script>
 	
 使用在线编辑运行结果如图

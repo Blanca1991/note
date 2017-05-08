@@ -42,6 +42,9 @@ transform:rotate3d(1，1,0,45deg);  X轴Y轴旋转45度 Z轴不旋转 。
 	2. skewX（Ndeg）X轴上倾斜。
 	3. skewY（Ndeg）Y轴上倾斜。
 	
++   matrix(n,n,n,n,n,n) 矩阵函数
+    基本上的样式都可以通过以上的方式设计出来，矩阵处理复杂的样式。包括所有的transform的属性样式。
+	[ 详细的参看另外一片文 ](http://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%98%B5/)
 
 	
   

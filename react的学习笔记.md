@@ -46,7 +46,7 @@
 
 
 这是一个简单的例子。虽说简单，但是有两个需要注意的地方。
-第一点就是声明的`WebSite`  `首字母必须大写的`。
+第一点就是声明的`WebSite`         `首字母必须大写的` 。
 第二点就是在一个createClass创建的组件中`只能有一个根节点`。这个根节点可以有任意层的子节点。
 
 错误的写法例子：
@@ -189,3 +189,6 @@ this.props 对象的属性与组件的属性一一对应，但是有一个例外
 所以，`处理 this.props.children 的时候要小心`。
 
 React 提供一个工具方法 `React.Children` 来处理 `this.props.children` 。我们可以用 `React.Children.map` 来遍历子节点，而不用担心 this.props.children 的数据类型是 undefined 还是 object。更多的 React.Children 的方法，请参考[官方文档](https://facebook.github.io/react/docs/react-api.html)。
+
+
+#### PropTypes

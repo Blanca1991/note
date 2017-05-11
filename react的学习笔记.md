@@ -5,11 +5,13 @@
 #### 一个简单的小demo
 
 	<!DOCTYPE html>
-	<html>		
+	<html>
+		<meta charset="UTF-8" />
+    	<title>Hello React!</title>		
  		<head>
-    		<script src="../build/react.js"></script>
-    		<script src="../build/react-dom.js"></script>
-    		<script src="../build/browser.min.js"></script>
+    		<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
   		</head>
   		
 		<body>
@@ -192,3 +194,70 @@ React 提供一个工具方法 `React.Children` 来处理 `this.props.children` 
 
 
 #### PropTypes
+组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种`机制`，`验证`别人使用的组件时，提供的参数是否符合要求。
+
+组件类的`PropTypes`属性，就是用来验证组件实例的属性是否符合要求
+
+ 	var MyTitle = React.createClass({
+ 		propTypes:{
+ 			title:React.PropTypes.string.isRequired,
+ 		},
+ 		render:function(){
+ 			return (  <h2>{this.props.title}</h2>  )
+ 		}
+ 	});
+ 	
+ 上面的`Mytitle`组件有一个`title`属性。`PropTypes`告诉React，这个`title`属性是必须，且它的值必须是字符串。现在，我们设置title属性的值是一个number。看一下
+ 
+ 	var data = 123;	
+	ReactDom.render(
+		<Mytitle title={data} />,
+		document.body
+	)
+	
+ 这样，title属性就会验证不通过，console就会显示错误的信息。
+  
+  	Warning: Failed propType: Invalid prop `title` of type `number` supplied to `MyTitle`, expected `string`.
+
+
+ 此外，`getDefaultProps`方法可以用来设置组件属性的默认值。
+ 
+ 	var MyTitle = React.creatClass({
+ 		getDefaultProps:function(){
+ 			return {
+ 				title:"hello"
+ 			
+ 			}
+ 		},
+ 		
+ 		render:function(){
+ 			return <h1> {this.props.title} </h1>;
+ 		} 		
+ 	})
+ 	
+	ReactDom.render(
+		<MyTitle  />,
+		document.body
+	)
+
+ 此行代码会输出“hello”
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

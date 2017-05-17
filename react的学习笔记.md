@@ -225,8 +225,7 @@ React 提供一个工具方法 `React.Children` 来处理 `this.props.children` 
  	var MyTitle = React.creatClass({
  		getDefaultProps:function(){
  			return {
- 				title:"hello"
- 			
+ 				title:"hello"		
  			}
  		},
  		
@@ -243,6 +242,83 @@ React 提供一个工具方法 `React.Children` 来处理 `this.props.children` 
  此行代码会输出“hello”
  
  
+#### 获取真实的DOM节点
+
+组件并不是真实的**DOM**节点，而是存在于内存之中的一种数据结构，叫做虚拟DOM（vritual DOM）。只有当插入文档之后，才会变成真实的DOM。根据React的设计，所有的DOM变动，都是先在虚拟DOM上发生，然后再将时机发生变动的部分，反映在真实的DOM上，这种算法就叫做[DOM diff](https://calendar.perfplanet.com/2013/diff/)，它可以极大的提高网页的性能变现。
+
+但是，有时候需要从组件获取到真实的DOM节点，这时就要用到`ref`属性。
+
+	var Mycomponent = React.creatClass({
+		handleClick:function(){
+			this.refs.myTextInput.focus();
+		},
+		render:function(){
+			return (
+    			<div >
+       		    	<input type="text" ref="myTextInput"  />
+        			<input type="button" value="Focus the text input" onclick="={this.handleClick}"  />
+    			</div>
+			);
+		}
+	});
+	
+	ReactDOM.render(
+		<Mycomponent  />,
+		document.getElementById("example")
+	);
+	
+运行结果 点击（Focus the text input）按钮，（myTextInput）这个input获取focus。
+
+组件`myTextInput`的字节点有一个文本输入框，用于获取用户的输入。这时就需要获取到真实的DOM节点，虚拟的DOM节点是拿不到用户输入的。为了做到这个，文本框就必须有一个`ref`属性，然后`this.refs[refName]`就会返回这个真实的DOM节点。
+
+需要注意的是，由于`this.refs[refName]`属性获取到的是真实的DOM，所以必须等到`虚拟DOM`插入文档以后，才能使用这个属性，否则会报错。上面的代码中，通过为组件指定`clice`事件的回调函数，确保了只有等到真实DOM发生`clice`事件之后，才会读取`this.refs[refName]`属性。
+
+React组件支持除了`click`事件以外，还有`KeyDown` 、`Copy`、`Scroll` 等，完整的事件清单查看官方文档.
+
+
+#### this.state
+
+组件免不了要与用户互动，React的一大创新，就是将组件看成是一个状态机，一开始有一个初始的状态，然后用户互动，导致状态变化，从而触发重新渲染UI
+
+	var LikeButton = React.creatClass({
+    	getInitialState:function(){
+        	return {liked:false};
+    	},
+    	handleClick:function(event){
+        	this.setState({liked:!this.state.liked});
+    	},
+    	render:function(){
+       		var text = this.state.liked ? 'like':'haven\'t liked';
+        	return (
+            	<p onClick={this.handleClick} >
+                	You {text} this. Click to toggle. 
+            	</p>
+       		);
+    	}
+	});
+
+	ReactDOM.render(
+    	<LikeButton />,
+    	document.getElementById('eample')
+	);
+
+上面的代码是一个`LikeButton`组件，他的`getInitialState`方法用于定义初始状态，也就是一个对象，这个对象可以通过`this.state`属性读取。当用户点击组件，导致状态变化，`this.setState`方法就修改状态值，每次修改以后，`自动调用` `this.render`方法，再次渲染组件。
+
+由于`this.props`和`this.state`都用于表述组件的特性，可能会产生混淆。一个简单的区分方法就是，`this.props`表示一旦定义，就不再改变特性，而`this.state`是会随着用户互动而产生变化。
+
+
+#### 表单
+
+用户在表单填入的内容，属于用户跟组件的互动，所以不能用`this.props`来读取
+
+
+
+
+
+
+
+
+
 
 
 

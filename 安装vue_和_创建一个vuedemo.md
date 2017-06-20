@@ -7,7 +7,7 @@
 	
 	 配置淘宝镜像：npm config set registry https://registry.npm.taobao.org
 	 
-+ vue init webpack demo1   ~~//project的文件名~~ 
++ `vue init webpack demo1`   ~~//project的文件名~~ 
 
 	按照提示语一步一步走，如下图：
 	
@@ -21,6 +21,10 @@
 	
 	<img src="https://github.com/Blanca1991/note/blob/master/image/vueSetup02.png"  width="50%" / >
 
+
++ 我们的是在app上的  所以我们还要添加一个媒体查询标签    在<index.html>上
+`<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+`    
 
 ##### 一、项目开发
 
@@ -72,7 +76,7 @@
 
 	<template >
     	<div class="footer fixed">
-        	<span><router-link to='/'>pageOne</router-link></span>
+        	<span><router-link to='/PageOne'>pageOne</router-link></span>
         	<span><router-link  to='/'>pageTwo</router-link></span>
     	</div>
 	</template>
@@ -171,7 +175,7 @@ pageOne.vue 是另一个模板，我们在src/views/创建一个新的文件夹p
       			component: Index
   			},
   			{
-      			path: '/pages',
+      			path: '/pageOne',
       			name:'pageOne',
       			component:PageOne
   			}
@@ -179,10 +183,29 @@ pageOne.vue 是另一个模板，我们在src/views/创建一个新的文件夹p
 	})
 	
 	
-在vue中，在组件中绑定v-bind:class="'isIndex':true"
-绑定的方法还有
+其中 ， 在路由router中：
 
-1. 对象  使用对象绑定时，必须加上""引号，加引号代表对应的样式，否则会将其作为对象的属性，在初始化的时候报错。
+		import PageOneok from '../views/pages/pageOne'
+		
+		{
+			path: '/pageOne',
+      	    name: 'pageOne',
+      	    component: PageOneok
+			
+		}
+		
+	
++ component: PageOneok 和 import PageOne from '../views/pages/pageOne'  是一一对应的。
+
++ path: '/pageOne' 和 <router-link to='/PageOne'>pageOne</router-link> 中的 to='/PageOne' 是一一对应的。
+
+＋ name: 'pageOne' 需要定义，暂时未用到。
+
+
+**在vue中，在组件中绑定v-bind:class="'isIndex':true"
+绑定的方法还有**
+
+1. ** 对象 ** 使用对象绑定时，必须加上""引号，加引号代表对应的样式，否则会将其作为对象的属性，在初始化的时候报错。
 	
 		v-bind:class="classObject"
 		
@@ -196,7 +219,7 @@ pageOne.vue 是另一个模板，我们在src/views/创建一个新的文件夹p
 
 
 
-2. 数组也可使用对象语法：
+2. **数组**也可使用对象语法：
 
 		v-bind:class="[classA, { 'classB': isB, 'classC': isC }]
 		v-bind:class="[classA, { classB: isB, classC: isC }]"
@@ -208,13 +231,13 @@ pageOne.vue 是另一个模板，我们在src/views/创建一个新的文件夹p
     	}  
 		//两个方法都可以实现
 	
-3. 在组件上使用v-bind:class="" ，class将被添加在根元素上面，这个雨元素已经存在的类不会被覆盖。
+3. 在组件上使用v-bind:class="" ，class将被添加在根元素上面，这个元素已经存在的类不会被覆盖。
 	
 		<!-->子组件在父组件中：<-->
 		
 		<footer-nav v-bind:class="{'pageOne':isNowPage}"></footer-nav>
 		
-pageOne会被渲染在子组件的div上，`pageOne的样式写在父组件中`。isNowPage的true和false来控制显示与否。
+	pageOne会被渲染在子组件的div上，`pageOne的样式写在父组件中`。isNowPage的true和false来控制显示与否。
 		
 		
 ###### 4.2 编写功能
@@ -223,7 +246,27 @@ pageOne会被渲染在子组件的div上，`pageOne的样式写在父组件中`�
 ###### 定义数据
 在data函数下新增一个nameList数组。
 	
-	NameList:[{"name":"hello1"},{"name":"hello2"}]   
+	NameList:[{"name":"hello1"},{"name":"hello2"}] 
+###### 渲染html
+在html中我们开始写v-for循环语句，item 是数组元素迭代的别名。
+	
+	<div v-for="item in NameList"  >   
+		<span>{{ item.name }}</span>
+	</div>
+
+(item, index)第二个参数可以作为当前项的索引。
+
+	<li v-for="(item, index) in NameList">
+    	{{ parentMessage }} - {{ index }} - {{ item.message }}
+  	</li>
+
+也可以用 of 替代 in 作为分隔符
+
+	<div v-for="item of items"></div>
+	
+###### 添加js 
+
+
 	
 	
 	

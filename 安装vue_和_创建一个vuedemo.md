@@ -266,8 +266,18 @@ pageOne.vue 是另一个模板，我们在src/views/创建一个新的文件夹p
 	
 ###### 添加js 
 
+暂未写哈哈哈
 
-	
+
+
+
+
+
+
+
+
+
+参考链接 <http://blog.csdn.net/u013182762/article/details/53021374>
 	
 	
 	

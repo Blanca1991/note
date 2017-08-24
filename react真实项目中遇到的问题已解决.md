@@ -129,6 +129,46 @@
           
       
  注意：`key  每个循环的item 必须要有唯一的 key `（ key 写在了<div></div>中 key用到的是js的 参数 所以 写法 `<div kye={ index } ></div>` ）	
+ 
+ 
+ 
+ 
+##### 模拟单选的tab
+
+state中的声明
+	
+	tabs:[
+        {tabName:"全部",id:1},
+        {tabName:"近三月",id:2},
+        {tabName:"近半年",id:3},
+        {tabName:"近一年",id:4},
+      ],
+      currentIndex:0,//tabs初始值的设置
+      
+ 
+render
+
+	<div className="time_options">
+            {
+              this.state.tabs.map(function(tab,i){
+                var tabStyle=tab.id==this.state.currentIndex ? 'options_active' : 'options';
+                return(
+                  <div className={ tabStyle } key={ i } onClick={ this.tabChoiced.bind(_this,tab.id) }>{ tab.tabName }</div>
+                )
+              }.bind(_this))
+            }
+          </div>
+          
+          
+onClick：tabChoiced ES6写法
+
+	tabChoiced=(id)=>{ //切换tab标签
+      this.setState({
+          currentIndex:id
+      });
+    }
+
+	
 	
 	
 	

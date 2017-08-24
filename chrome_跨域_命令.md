@@ -18,3 +18,5 @@ open -a "Google Chrome" --args -disable-web-security --user-data-dir=
 
 
 ##### scrollIntoView() 处理input被键盘挡住的情况   在移动设备上有效
+
+##### React     http://www.react-cn.com/

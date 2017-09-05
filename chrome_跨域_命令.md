@@ -20,3 +20,33 @@ open -a "Google Chrome" --args -disable-web-security --user-data-dir=
 ##### scrollIntoView() 处理input被键盘挡住的情况   在移动设备上有效
 
 ##### React     http://www.react-cn.com/
+
+
+
+
+
+##### Mac os 下面用
+
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security
+
+或者
+
+open -a "Google Chrome" --args --disable-web-security
+
+
+##### Ubuntu?Linux:
+
+chromium-browser --disable-web-security
+
+##### windows
+chrome.exe --disable-web-security
+
+##### 用命令行打开 Apple Safafi 方法是：
+
+Mac OS 下：
+
+open -a '/Applications/Safari.app' --args --disable-web-security
+
+Windows：
+C:\Program Files\Safari\Safari.exe --disable-web-security
+

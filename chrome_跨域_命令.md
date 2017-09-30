@@ -22,9 +22,6 @@ open -a "Google Chrome" --args -disable-web-security --user-data-dir=
 ##### React     http://www.react-cn.com/
 
 
-
-
-
 ##### Mac os 下面用
 
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security
@@ -49,4 +46,9 @@ open -a '/Applications/Safari.app' --args --disable-web-security
 
 Windows：
 C:\Program Files\Safari\Safari.exe --disable-web-security
+
+
+##### React map循环 渲染 内容是html  使用
+
+`dangerouslySetInnerHTML`={{__html: '从后台拿到字符串类型的标签'}}
 
